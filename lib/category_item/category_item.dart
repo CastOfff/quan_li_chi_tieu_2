@@ -36,8 +36,8 @@ class _CategoryItemState extends State<CategoryItem> {
         onTap: widget.onTap,
         child: Container(
           padding: EdgeInsets.all(4.0),
-          height: 96,
-          width: 96,
+          height: 90,
+          width: 90,
           decoration: BoxDecoration(
             color: Color(0xfffdf4fd),
             shape: BoxShape.rectangle,
@@ -59,7 +59,7 @@ class _CategoryItemState extends State<CategoryItem> {
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
-                    fontSize: 18,
+                    fontSize: 14,
                     overflow: TextOverflow.ellipsis),
               ),
             ],

@@ -22,6 +22,7 @@ class _TransactionPageState extends State<TransactionPage> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: const Text('Giao dịch'),
       ),

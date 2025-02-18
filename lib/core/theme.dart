@@ -20,7 +20,7 @@ ThemeData appTheme() {
       titleMedium: TextStyle(
         color: Colors.black87,
         fontSize: 18,
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w400,
       ),
 
       bodySmall: TextStyle(

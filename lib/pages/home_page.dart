@@ -32,32 +32,47 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: TabBarView(
-          controller: tabController,
-          children: pages),
-      bottomNavigationBar: BottomNavigationBar(
-        iconSize: 30,
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        onTap: (value) {
-          setState(() {
-            currentPage = value;
-            tabController.animateTo(value);
-          });
-        },
-        currentIndex: currentPage,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.pending_actions), label: 'Nhập'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined), label: 'Lịch'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.pie_chart), label: 'báo cáo'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.more_horiz_outlined), label: 'khác'),
-        ],
-      ),
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/wallpaper.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          body: TabBarView(
+              controller: tabController,
+              children: pages),
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.transparent,
+            iconSize: 30,
+            selectedFontSize: 14,
+            unselectedFontSize: 14,
+            onTap: (value) {
+              setState(() {
+                currentPage = value;
+                tabController.animateTo(value);
+              });
+            },
+            currentIndex: currentPage,
+            items: const [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.pending_actions), label: 'Nhập'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.calendar_month_outlined), label: 'Lịch'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.pie_chart), label: 'báo cáo'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.more_horiz_outlined), label: 'khác'),
+            ],
+          ),
+        ),
+      ],
+
     );
   }
 }

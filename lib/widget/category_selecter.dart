@@ -20,26 +20,29 @@ class CategorySelecter extends StatefulWidget {
 class _CategorySelecterState extends State<CategorySelecter> {
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-          crossAxisSpacing: 5.0,
-          mainAxisSpacing: 5.0,
-        ),
-        itemCount: widget.categories.length,
-        itemBuilder: (context, index) {
-          return CategoryItem(
-            onTap: () => widget.onCategorySelected(index),
-            thickness: widget.selectedCategoryIndex == index ? 3 : 1,
-            frameColor: widget.selectedCategoryIndex == index ? Colors.deepOrange : Colors.grey,
-            category: widget.categories[index]['name'],
-            categoryIcon: Icon(
-                widget.categories[index]['icon'],
-              size: 29,
-              color: widget.categories[index]['color'],
-            ),
-          );
-        },
+    return Container(
+      margin: EdgeInsets.all(8.0),
+      child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+            crossAxisSpacing: 2.0,
+            mainAxisSpacing: 2.0,
+          ),
+          itemCount: widget.categories.length,
+          itemBuilder: (context, index) {
+            return CategoryItem(
+              onTap: () => widget.onCategorySelected(index),
+              thickness: widget.selectedCategoryIndex == index ? 3 : 1,
+              frameColor: widget.selectedCategoryIndex == index ? Colors.deepOrange : Colors.grey,
+              category: widget.categories[index]['name'],
+              categoryIcon: Icon(
+                  widget.categories[index]['icon'],
+                size: 29,
+                color: widget.categories[index]['color'],
+              ),
+            );
+          },
+      ),
     );
   }
 }
