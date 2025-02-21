@@ -48,6 +48,10 @@ class _CalendarFiledState extends State<CalendarFiled> {
     }
   }
 
+  DateTime getSelectedDate() {
+    return DateTime(year, month, day);
+  }
+
   @override
   void initState() {
     super.initState();

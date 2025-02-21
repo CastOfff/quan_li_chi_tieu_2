@@ -20,6 +20,14 @@ class _IncomePageState extends State<IncomePage> {
   final List<Map<String, dynamic>> categories = categoriesIncome;
   int selectedCategoryIndex = 0;
   TextEditingController moneyController = TextEditingController();
+  final FocusNode focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +46,7 @@ class _IncomePageState extends State<IncomePage> {
             indent: 20,
             endIndent: 20,
           ),
-          InsertMoneyField(moneyController: moneyController,),
+          InsertMoneyField(moneyController: moneyController, focusNode: focusNode,),
           const Divider(
             thickness: 1,
             color: Colors.grey,
@@ -57,7 +65,7 @@ class _IncomePageState extends State<IncomePage> {
             ),
           ),
           Flexible(
-            flex: 7,
+            flex: 4,
             child: CategorySelecter(
               onCategorySelected: (index) {
                 setState(() {
@@ -69,10 +77,10 @@ class _IncomePageState extends State<IncomePage> {
             ),
           ),
           Flexible(
-            flex: 2,
+            flex: 1,
             child: ElevatedButton(
               onPressed: (){
-                initState();
+                focusNode.unfocus();
               },
               style: ButtonStyle(
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(

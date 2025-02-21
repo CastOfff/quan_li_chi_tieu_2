@@ -5,8 +5,12 @@ import 'package:quan_li_chi_tieu_2/widget/number_format.dart';
 
 class InsertMoneyField extends StatefulWidget {
   final TextEditingController moneyController;
-
-  const InsertMoneyField({super.key, required this.moneyController});
+  final FocusNode focusNode;
+  const InsertMoneyField({
+    super.key,
+    required this.moneyController,
+    required this.focusNode,
+  });
 
   @override
   State<InsertMoneyField> createState() => _InsertMoneyFieldState();
@@ -40,7 +44,12 @@ class _InsertMoneyFieldState extends State<InsertMoneyField> {
             flex: 5,
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+
               child: TextFormField(
+                // onTapOutside: (event) {
+                //   FocusManager.instance.primaryFocus?.unfocus();
+                // },
+                focusNode: widget.focusNode,
                 controller: widget.moneyController,
                 style: TextStyle(
                   fontSize: 18,
@@ -71,7 +80,8 @@ class _InsertMoneyFieldState extends State<InsertMoneyField> {
                   return onMoneyChanged(valuer);
                 },
               ),
-            )),
+            )
+        ),
         const Text(
           'đ',
           style: TextStyle(

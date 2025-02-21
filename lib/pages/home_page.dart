@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:quan_li_chi_tieu_2/pages/day_transaction_page.dart';
 import 'package:quan_li_chi_tieu_2/pages/report_page.dart';
@@ -13,21 +12,25 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  late TabController tabController;
+class _HomePageState extends State<HomePage> {
+  int currentPage = 0;
   List<Widget> pages = [
     TransactionPage(),
     DayTransactionPage(),
     ReportPage(),
     ExtendPage()
   ];
-  int currentPage = 0;
 
   @override
   void initState() {
     // TODO: implement initState
-    tabController = TabController(length: 4, vsync: this);
     super.initState();
+  }
+
+  void onItemTapped(int index) {
+    setState(() {
+      currentPage = index;
+    });
   }
 
   @override
@@ -44,30 +47,23 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
-          body: TabBarView(
-              controller: tabController,
-              children: pages),
+          body: pages.elementAt(currentPage),
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: Colors.transparent,
             iconSize: 30,
             selectedFontSize: 14,
             unselectedFontSize: 14,
-            onTap: (value) {
-              setState(() {
-                currentPage = value;
-                tabController.animateTo(value);
-              });
-            },
+            onTap: onItemTapped,
             currentIndex: currentPage,
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.pending_actions), label: 'Nhập'),
+                  icon: Icon(Icons.pending_actions, size: 24,), label: 'Nhập'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.calendar_month_outlined), label: 'Lịch'),
+                  icon: Icon(Icons.calendar_month_outlined, size: 24,), label: 'Ngày'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.pie_chart), label: 'báo cáo'),
+                  icon: Icon(Icons.pie_chart, size: 24,), label: 'Báo cáo'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.more_horiz_outlined), label: 'khác'),
+                  icon: Icon(Icons.more_horiz_outlined, size: 24,), label: 'Thêm'),
             ],
           ),
         ),

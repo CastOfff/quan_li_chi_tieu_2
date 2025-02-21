@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quan_li_chi_tieu_2/category_item/category_expense_item.dart';
 
+import '../../core/cash_flow_data.dart';
+import '../../providers/cash_flow_provider.dart';
 import '../../widget/calendar_filed.dart';
 import '../../widget/category_selecter.dart';
 import '../../widget/insert_money_field.dart';
@@ -21,12 +24,22 @@ class _ExpensePageState extends State<ExpensePage> {
   final List<Map<String, dynamic>> categories = categoriesExpense;
   int selectedCategoryIndex = 0;
   TextEditingController moneyController = TextEditingController();
+  final FocusNode focusNode = FocusNode();
+  final bool isIncome = false;
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<CashFlowProvider>(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Column(
         children: [
+          /// THỜI GIAN
           CalendarFiled(
               onDateChanged: (selectDay) {
                 print('${selectDay.year}, ${selectDay.month}, ${selectDay.day}');
@@ -39,13 +52,10 @@ class _ExpensePageState extends State<ExpensePage> {
             indent: 20,
             endIndent: 20,
           ),
-          InsertMoneyField(moneyController: moneyController,),
-          TextButton(
-            onPressed: () {
-              setState(() {
-              });
-            },
-            child: Text('${NumberFormatter().stringToInt(moneyController.text)}'),),
+
+          /// NHẬP SỐ TIỀN
+          InsertMoneyField(moneyController: moneyController, focusNode: focusNode,),
+
 
           const Divider(
             thickness: 1,
@@ -64,8 +74,10 @@ class _ExpensePageState extends State<ExpensePage> {
               ),
             ),
           ),
+
+          /// DANH MỤC
           Flexible(
-            flex: 7,
+            flex: 4,
             child: CategorySelecter(
               onCategorySelected: (index) {
                 setState(() {
@@ -76,11 +88,45 @@ class _ExpensePageState extends State<ExpensePage> {
               categories: categories,
             ),
           ),
+
+          /// NÚT XÁC NHẬN
           Flexible(
-            flex: 2,
+            flex: 1,
             child: ElevatedButton(
               onPressed: (){
-                initState();
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("Thông báo"),
+                        content: Text('Bạn có muốn thêm giao dịch này không?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Không'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              provider.addTransaction(
+                                CashFlowData(
+                                  date: DateTime.now(),
+                                  isIncome: isIncome,
+                                  amount: NumberFormatter().stringToInt(moneyController.text),
+                                  category: categoriesExpense[selectedCategoryIndex]['name'],
+                                )
+                              );
+                              moneyController.clear();
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Có'),
+                          )
+                        ]
+                      );
+                    }
+                );
+                focusNode.unfocus();
               },
               style: ButtonStyle(
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -90,11 +136,12 @@ class _ExpensePageState extends State<ExpensePage> {
                 backgroundColor: MaterialStateProperty.all(Colors.deepOrangeAccent),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 80, right: 80, top: 8, bottom: 8),
+                padding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 0),
                 child: Text('Xác nhận',style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500),),
               ),
             ),
           ),
+          SizedBox(height: 5,)
         ],
       ),
     );
