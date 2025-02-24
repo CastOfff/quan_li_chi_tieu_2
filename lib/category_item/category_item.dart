@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/category_type.dart';
 
@@ -8,7 +9,7 @@ class CategoryItem extends StatefulWidget {
   final Color frameColor;
   final VoidCallback onTap;
   final double thickness;
-
+  final Color backgroundColor;
   const CategoryItem(
       {super.key,
         required this.category,
@@ -16,6 +17,7 @@ class CategoryItem extends StatefulWidget {
         required this.frameColor,
         required this.onTap,
         required this.thickness,
+        required this.backgroundColor,
       });
 
   @override
@@ -35,24 +37,24 @@ class _CategoryItemState extends State<CategoryItem> {
       child: GestureDetector(
         onTap: widget.onTap,
         child: Container(
-          padding: EdgeInsets.all(4.0),
-          height: 80,
-          width: 80,
+          padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.h),
+          height: 72.w,
+          width: 72.w,
           decoration: BoxDecoration(
-            color: Color(0xfffdf4fd),
+            color: widget.backgroundColor,
             shape: BoxShape.rectangle,
             border: Border.all(
               color: widget.frameColor,
               width: widget.thickness, // Độ dày của khung
             ),
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(10.r),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               widget.categoryIcon,
               SizedBox(
-                height: 8,
+                height: 4.h,
               ),
               Text(
                 widget.category.description,

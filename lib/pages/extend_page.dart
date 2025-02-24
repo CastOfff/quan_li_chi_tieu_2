@@ -19,7 +19,12 @@ class ExtendPage extends StatelessWidget {
             var cashFlowData = provider.allTransactions[index];
             return ListTile(
                 title: Text('${cashFlowData.amount} VND'),
-            subtitle: Text('${cashFlowData.category.description} - ${cashFlowData.date.toUtc()}'),
+            subtitle: Text(
+                '${cashFlowData.category.description} - Ngày '
+                    '${cashFlowData.date.day} '
+                    '/${cashFlowData.date.month} '
+                    '/${cashFlowData.date.year}'
+            ),
               trailing: IconButton(
                 icon: Icon(Icons.delete),
                 onPressed: () {

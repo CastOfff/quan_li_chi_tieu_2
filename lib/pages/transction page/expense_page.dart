@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:quan_li_chi_tieu_2/category_item/category_expense_item.dart';
 
 import '../../core/cash_flow_data.dart';
+import '../../core/date_manager.dart';
 import '../../providers/cash_flow_provider.dart';
 import '../../widget/calendar_filed.dart';
 import '../../widget/category_selecter.dart';
@@ -42,7 +44,8 @@ class _ExpensePageState extends State<ExpensePage> {
           /// THỜI GIAN
           CalendarFiled(
               onDateChanged: (selectDay) {
-                print('${selectDay.year}, ${selectDay.month}, ${selectDay.day}');
+                DateManeger().updateDate(selectDay);
+                // print('${selectDay.year}, ${selectDay.month}, ${selectDay.day}');
               }
           ),
           const Divider(
@@ -66,10 +69,10 @@ class _ExpensePageState extends State<ExpensePage> {
           ),
           Center(
             heightFactor: 1.5,
-            child: const Text(
+            child: Text(
               'Danh mục',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 20.w,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -111,7 +114,7 @@ class _ExpensePageState extends State<ExpensePage> {
                             onPressed: () {
                               provider.addTransaction(
                                 CashFlowData(
-                                  date: DateTime.now(),
+                                  date: DateManeger().selectedDate,
                                   isIncome: isIncome,
                                   amount: NumberFormatter().stringToInt(moneyController.text),
                                   category: categoriesExpense[selectedCategoryIndex]['name'],

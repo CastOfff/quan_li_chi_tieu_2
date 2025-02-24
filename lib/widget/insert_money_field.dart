@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quan_li_chi_tieu_2/widget/number_format.dart';
 
 class InsertMoneyField extends StatefulWidget {
@@ -30,21 +31,22 @@ class _InsertMoneyFieldState extends State<InsertMoneyField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
-      padding: EdgeInsets.only(left: 8.0),
+      margin: EdgeInsets.only(top: 6.w, left: 10.w, right: 10.w),
+      padding: EdgeInsets.only(left: 8.w),
       child: Row(children: [
         Expanded(
-          flex: 1,
+          flex: 3,
           child: Text(
             'Số Tiền',
             style: Theme.of(context).textTheme.titleMedium,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
         Expanded(
-            flex: 5,
+            flex: 14,
             child: Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-
+              padding: EdgeInsets.only(left: 1.w, right: 8.w),
               child: TextFormField(
                 // onTapOutside: (event) {
                 //   FocusManager.instance.primaryFocus?.unfocus();
@@ -52,13 +54,13 @@ class _InsertMoneyFieldState extends State<InsertMoneyField> {
                 focusNode: widget.focusNode,
                 controller: widget.moneyController,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w400,
                 ),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(
-                        left: 12.0, right: 8.0, top: 4.0, bottom: 4.0),
+                        left: 12.w, right: 8.w, top: 4.w, bottom: 4.w),
                     filled: true,
                     fillColor: const Color(0xfff8e4dc),
                     focusedBorder: OutlineInputBorder(
@@ -72,7 +74,7 @@ class _InsertMoneyFieldState extends State<InsertMoneyField> {
                     hintText: 'Nhập số tiền',
                     hintStyle: TextStyle(
                       color: Colors.grey,
-                      fontSize: 18,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w400,
                     )
                 ),
@@ -82,10 +84,10 @@ class _InsertMoneyFieldState extends State<InsertMoneyField> {
               ),
             )
         ),
-        const Text(
+        Text(
           'đ',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 16.sp,
             decoration: TextDecoration.underline,
           ),
         )

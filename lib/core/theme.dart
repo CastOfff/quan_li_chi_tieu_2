@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ThemeData appTheme() {
   return ThemeData(
@@ -15,17 +16,17 @@ ThemeData appTheme() {
       backgroundColor: Color(0xfff8eff8),
     ),
 
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
 
       titleMedium: TextStyle(
         color: Colors.black87,
-        fontSize: 18,
+        fontSize: 16.w,
         fontWeight: FontWeight.w400,
       ),
 
       bodySmall: TextStyle(
         color: Colors.redAccent,
-        fontSize: 10,
+        fontSize: 10.0,
       ),
     ),
 

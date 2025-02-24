@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CalendarFiled extends StatefulWidget {
   final ValueChanged<DateTime>? onDateChanged;
@@ -48,10 +49,6 @@ class _CalendarFiledState extends State<CalendarFiled> {
     }
   }
 
-  DateTime getSelectedDate() {
-    return DateTime(year, month, day);
-  }
-
   @override
   void initState() {
     super.initState();
@@ -64,31 +61,30 @@ class _CalendarFiledState extends State<CalendarFiled> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
-      padding: EdgeInsets.only(left: 8.0),
+      margin: EdgeInsets.only(top: 6.w, left: 10.w, right: 10.w),
+      padding: EdgeInsets.only(left: 8.w),
       child: Row(
         children: [
           Expanded(
-            flex: 1,
+            flex: 3,
             child: Text(
               'Ngày',
               style: Theme.of(context).textTheme.titleMedium
               ),
           ),
           Expanded(
-            flex: 5,
+            flex: 14,
               child: Container(
-                margin: EdgeInsets.only(left: 8.0, right: 8.0),
-                padding: EdgeInsets.only(left: 12.0, right: 8.0, top:4.0, bottom: 4.0),
+                margin: EdgeInsets.only(left: 1.w, right: 8.w),
+                padding: EdgeInsets.only(left: 12.w, right: 8.w, top:2.w, bottom: 2.w),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10.r),
                   color: const Color(0xfff8e4dc),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('$weekday, $day/$month/$year', style: Theme.of(context).textTheme.titleMedium,),
-                    SizedBox(width: 10),
                     IconButton(
                       onPressed: selectDay,
                       icon: Icon(Icons.calendar_month_outlined, color: Colors.orange),
