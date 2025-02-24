@@ -38,7 +38,6 @@ class _ExpensePageState extends State<ExpensePage> {
   Widget build(BuildContext context) {
     final provider = Provider.of<CashFlowProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.transparent,
       body: Column(
         children: [
           /// THỜI GIAN

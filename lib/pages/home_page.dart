@@ -35,40 +35,25 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/wallpaper.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          body: pages.elementAt(currentPage),
-          bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Colors.transparent,
-            iconSize: 30,
-            selectedFontSize: 14,
-            unselectedFontSize: 14,
-            onTap: onItemTapped,
-            currentIndex: currentPage,
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.pending_actions, size: 24,), label: 'Nhập'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.calendar_month_outlined, size: 24,), label: 'Ngày'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.pie_chart, size: 24,), label: 'Báo cáo'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.more_horiz_outlined, size: 24,), label: 'Thêm'),
-            ],
-          ),
-        ),
-      ],
-
+    return Scaffold(
+      body: pages.elementAt(currentPage),
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 30,
+        selectedFontSize: 14,
+        unselectedFontSize: 14,
+        onTap: onItemTapped,
+        currentIndex: currentPage,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.pending_actions, size: 24,), label: 'Nhập'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month_outlined, size: 24,), label: 'Ngày'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.pie_chart, size: 24,), label: 'Báo cáo'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.more_horiz_outlined, size: 24,), label: 'Thêm'),
+        ],
+      ),
     );
   }
 }

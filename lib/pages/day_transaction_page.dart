@@ -22,7 +22,6 @@ class _DayTransactionPageState extends State<DayTransactionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
       appBar: AppBar( title: Text('Thu chi theo ngày'),),
       body: Column(
         children: [
