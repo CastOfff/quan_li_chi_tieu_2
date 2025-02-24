@@ -37,8 +37,8 @@ class _TransactionPageState extends State<TransactionPage> with SingleTickerProv
             controller: tabController,
             indicatorSize: TabBarIndicatorSize.tab,
             indicator: const UnderlineTabIndicator(
-              borderSide: BorderSide(width: 2.0, color: Colors.deepOrange), // Độ dày và màu sắc
-              insets: EdgeInsets.symmetric(horizontal: 2.0),
+              borderSide: BorderSide(width: 4.0, color: Colors.deepOrange), // Độ dày và màu sắc
+              insets: EdgeInsets.symmetric(horizontal: 60.0),
               // Khoảng cách từ viền
             ),
             indicatorColor: Colors.deepOrange,

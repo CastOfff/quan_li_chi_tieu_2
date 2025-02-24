@@ -58,7 +58,6 @@ class _ExpensePageState extends State<ExpensePage> {
           /// NHẬP SỐ TIỀN
           InsertMoneyField(moneyController: moneyController, focusNode: focusNode,),
 
-
           const Divider(
             thickness: 1,
             color: Colors.grey,
@@ -66,6 +65,7 @@ class _ExpensePageState extends State<ExpensePage> {
             indent: 20,
             endIndent: 20,
           ),
+
           Center(
             heightFactor: 1.5,
             child: Text(
