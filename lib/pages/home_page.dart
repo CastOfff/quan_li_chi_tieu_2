@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quan_li_chi_tieu_2/pages/day_transaction_page.dart';
+import 'package:quan_li_chi_tieu_2/pages/day_transaction_page/day_transaction_page.dart';
 import 'package:quan_li_chi_tieu_2/pages/report_page.dart';
 import 'package:quan_li_chi_tieu_2/pages/transction%20page/transaction_page.dart';
 

@@ -23,6 +23,12 @@ class CalenderWidget extends StatelessWidget {
       firstDay: DateTime.utc(2025),
       lastDay: DateTime(2026),
 
+      daysOfWeekStyle: DaysOfWeekStyle(
+        decoration: BoxDecoration(
+          color: Color(0xfffff1e5),
+          borderRadius: BorderRadius.circular(10),
+        )
+      ),
       /// Tieu de
       headerVisible: true,
       headerStyle: HeaderStyle(
