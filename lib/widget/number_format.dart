@@ -22,6 +22,6 @@ class NumberFormatter{
     if (moneyString == '') {
       return 0;
     }
-    return int.parse(moneyString.replaceAll(',', '')) ?? 0;
+    return int.parse(moneyString.replaceAll(RegExp(r'[^\d]'), '')) ?? 0;
   }
 }

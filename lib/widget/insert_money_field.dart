@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quan_li_chi_tieu_2/widget/number_format.dart';
 
@@ -58,6 +59,9 @@ class _InsertMoneyFieldState extends State<InsertMoneyField> {
                   fontWeight: FontWeight.w400,
                 ),
                 keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(
                         left: 12.w, right: 8.w, top: 4.w, bottom: 4.w),
