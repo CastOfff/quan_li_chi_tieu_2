@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:quan_li_chi_tieu_2/pages/home_page.dart';
 import 'package:quan_li_chi_tieu_2/pages/transction%20page/transaction_page.dart';
 import 'package:quan_li_chi_tieu_2/providers/cash_flow_provider.dart';
+import 'package:quan_li_chi_tieu_2/test_page.dart';
 
 import 'core/cash_flow_data.dart';
 import 'core/category_type.dart';

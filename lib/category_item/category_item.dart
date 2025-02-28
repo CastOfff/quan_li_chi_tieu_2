@@ -5,7 +5,7 @@ import '../core/category_type.dart';
 
 class CategoryItem extends StatefulWidget {
   final CategoryType category;
-  final Icon categoryIcon;
+  final AssetImage categoryImage;
   final Color frameColor;
   final VoidCallback onTap;
   final double thickness;
@@ -13,7 +13,7 @@ class CategoryItem extends StatefulWidget {
   const CategoryItem(
       {super.key,
         required this.category,
-        required this.categoryIcon,
+        required this.categoryImage,
         required this.frameColor,
         required this.onTap,
         required this.thickness,
@@ -52,7 +52,11 @@ class _CategoryItemState extends State<CategoryItem> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              widget.categoryIcon,
+              Image(
+                width: 32.w,
+                height: 32.w,
+                fit: BoxFit.cover,
+                image: widget.categoryImage,),
               SizedBox(
                 height: 4.h,
               ),

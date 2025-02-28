@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_ce/hive.dart';
-
 import '../core/cash_flow_data.dart';
+import '../core/category_type.dart';
 
 class CashFlowProvider extends ChangeNotifier {
   final Box<CashFlowData> cashFlowBox = Hive.box<CashFlowData>('cashFlowBox');
@@ -22,7 +22,7 @@ class CashFlowProvider extends ChangeNotifier {
   }
 
   /// EXPENSE - INCOME BY DAY
-  List<CashFlowData> getTransactionsByDay(DateTime date, bool isIncome) {
+  List<CashFlowData> getTransactionsByDay(DateTime date, {bool? isIncome}) {
     return cashFlowBox.values
         .where((transaction) =>
             transaction.date.day == date.day &&
@@ -65,7 +65,7 @@ class CashFlowProvider extends ChangeNotifier {
   }
 
   /// SUMMERY EXPENSE - INCOME BY MONTH
-  int getSummaryTransactionByMonth(DateTime date, bool isIncome){
+  int getSummaryTransactionByMonth(DateTime date, {bool? isIncome}){
     int sum = 0;
     for (var transaction in cashFlowBox.values) {
       if(transaction.date.month == date.month && transaction.isIncome == isIncome){
@@ -88,4 +88,28 @@ class CashFlowProvider extends ChangeNotifier {
     }
     return sum;
   }
+
+  /// Summary category transaction by month
+  Map<CategoryType, int> summaryCategoryTransactionByMonth(DateTime date, {required bool isIncome}) {
+    Map<CategoryType, int> sum = {};
+    for (var transaction in cashFlowBox.values) {
+      if (transaction.date.month == date.month && transaction.isIncome == isIncome) {
+        sum.update(transaction.category, (value) => value + transaction.amount, ifAbsent: () => transaction.amount);
+      }
+    }
+    return sum;
+  }
+
+  /// tinh trung binh tung loai
+  Map<CategoryType, double> averageCategoryTransactionByMonth(DateTime date, {required bool isIncome}) {
+    Map<CategoryType, double> average = {};
+    int sum = getSummaryTransactionByMonth(date, isIncome: isIncome);
+    Map<CategoryType, int> sumCategory =
+        summaryCategoryTransactionByMonth(date, isIncome: isIncome);
+    for (var e in sumCategory.keys) {
+      average[e] = double.parse((sumCategory[e]! / sum).toStringAsFixed(2));
+    }
+    return average;
+  }
+
 }

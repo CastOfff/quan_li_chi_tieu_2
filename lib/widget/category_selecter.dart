@@ -42,11 +42,7 @@ class _CategorySelecterState extends State<CategorySelecter> {
                 ? Color(0xffffeeea)
                 : Color(0xfffdf4fd),
             category: widget.categories[index]['name'],
-            categoryIcon: Icon(
-              widget.categories[index]['icon'],
-              size: 29,
-              color: widget.categories[index]['color'],
-            ),
+            categoryImage: widget.categories[index]['image'],
           );
         },
       ),

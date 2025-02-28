@@ -22,7 +22,7 @@ class CategoryTypeAdapter extends TypeAdapter<CategoryType> {
       case 3:
         return CategoryType.cosmetics;
       case 4:
-        return CategoryType.transactionFee;
+        return CategoryType.social;
       case 5:
         return CategoryType.healthcare;
       case 6:
@@ -65,7 +65,7 @@ class CategoryTypeAdapter extends TypeAdapter<CategoryType> {
         writer.writeByte(2);
       case CategoryType.cosmetics:
         writer.writeByte(3);
-      case CategoryType.transactionFee:
+      case CategoryType.social:
         writer.writeByte(4);
       case CategoryType.healthcare:
         writer.writeByte(5);

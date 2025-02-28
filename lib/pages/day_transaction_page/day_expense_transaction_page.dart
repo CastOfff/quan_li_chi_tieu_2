@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../category_item/category_income_item.dart';
+import '../../category_item/category_expense_item.dart';
 import '../../providers/cash_flow_provider.dart';
 import '../../widget/number_format.dart';
 
-class DayIncomeTransactionPage extends StatefulWidget {
+class DayExpenseTransactionPage extends StatefulWidget {
   final DateTime selectDay;
 
-  const DayIncomeTransactionPage({super.key, required this.selectDay});
+  const DayExpenseTransactionPage({super.key, required this.selectDay});
 
   @override
-  State<DayIncomeTransactionPage> createState() =>
-      _DayIncomeTransactionPageState();
+  State<DayExpenseTransactionPage> createState() =>
+      _DayExpenseTransactionPageState();
 }
 
-class _DayIncomeTransactionPageState extends State<DayIncomeTransactionPage> {
+class _DayExpenseTransactionPageState extends State<DayExpenseTransactionPage> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CashFlowProvider>(context);
@@ -24,11 +24,11 @@ class _DayIncomeTransactionPageState extends State<DayIncomeTransactionPage> {
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemCount: provider
-          .getTransactionsByDay(widget.selectDay, isIncome: true)
+          .getTransactionsByDay(widget.selectDay, isIncome: false)
           .length,
       itemBuilder: (context, index) {
         var cashFlowData = provider.getTransactionsByDay(widget.selectDay,
-            isIncome: true)[index];
+            isIncome: false)[index];
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -42,13 +42,13 @@ class _DayIncomeTransactionPageState extends State<DayIncomeTransactionPage> {
                     width: 28.w,
                     height: 28.w,
                     fit: BoxFit.cover,
-                    image: categoriesIncome[categoriesIncome.indexWhere((element) =>
-                    element['name'] == cashFlowData.category)]['image'],
+                    image: categoriesExpense[categoriesExpense.indexWhere((element) =>
+                        element['name'] == cashFlowData.category)]['image'],
                   ),
                   Text(
                     cashFlowData.category.description,
                     style: TextStyle(
-                      color: Colors.blueAccent,
+                      color: Colors.redAccent,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,
                     ),
@@ -62,7 +62,7 @@ class _DayIncomeTransactionPageState extends State<DayIncomeTransactionPage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 15.sp,
-                      color: Colors.blueAccent,
+                      color: Colors.redAccent,
                     ),
                   ),
                   IconButton(

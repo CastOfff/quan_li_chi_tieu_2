@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:quan_li_chi_tieu_2/widget/number_format.dart';
 
 import '../../providers/cash_flow_provider.dart';
 
@@ -17,12 +18,12 @@ Widget summeryTable(BuildContext context, DateTime selectDay) {
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         Column(
           children: [
-            Text('Tiền chi',
+            Text('Chi tiêu',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 13.sp,
                     color: Colors.redAccent)),
-            Text('${provider.getSummaryTransactionByDay(selectDay, false)}',
+            Text('${NumberFormatter().formatMoney(provider.getSummaryTransactionByDay(selectDay, false))} đ',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 13.sp,
@@ -31,12 +32,12 @@ Widget summeryTable(BuildContext context, DateTime selectDay) {
         ),
         Column(
           children: [
-            Text('Tiền thu',
+            Text('Thu nhập',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 13.sp,
                     color: Colors.blueAccent)),
-            Text('${provider.getSummaryTransactionByDay(selectDay, true)}',
+            Text('${NumberFormatter().formatMoney(provider.getSummaryTransactionByDay(selectDay, true))} đ',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 13.sp,
@@ -52,7 +53,7 @@ Widget summeryTable(BuildContext context, DateTime selectDay) {
                     color: provider.getDisparityTransactionByDay(selectDay) > 0
                         ? Colors.blueAccent
                         : Colors.redAccent)),
-            Text('${provider.getDisparityTransactionByDay(selectDay)}',
+            Text('${NumberFormatter().formatMoney(provider.getDisparityTransactionByDay(selectDay))} đ',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 13.sp,

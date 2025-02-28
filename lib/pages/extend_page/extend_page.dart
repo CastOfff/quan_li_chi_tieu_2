@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/cash_flow_provider.dart';
+import '../../providers/cash_flow_provider.dart';
 
-class ExtendPage extends StatelessWidget {
+class ExtendPage extends StatefulWidget {
   const ExtendPage({super.key});
 
+  @override
+  State<ExtendPage> createState() => _ExtendPageState();
+}
+
+class _ExtendPageState extends State<ExtendPage> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CashFlowProvider>(context);
